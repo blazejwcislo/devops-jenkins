@@ -9,7 +9,9 @@ pipeline {
         GITHUB_TOKEN = credentials('github-token')
     }
 
-    stage('Checkout') {
+    stages {
+
+        stage('Checkout') {
             steps {
                 script {
                     git credentialsId: 'github-token', url: 'https://github.com/blazejwcislo/devops-jenkins.git'
@@ -17,7 +19,6 @@ pipeline {
             }
         }
 
-    stages {
         stage('Build') {
             steps {
                 script {
