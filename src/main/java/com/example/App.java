@@ -12,7 +12,12 @@ public final class App {
      * @param args desc
      */
     public static void main(final String[] args) {
-        String unused = "I am never used.";
-        System.out.println("Hello, clean world!");
+        String maybeNull = System.getProperty("possibly.null");
+        if (maybeNull == null) {
+            // SpotBugs widzi, że tu może być null
+            System.out.println(maybeNull.length());
+        }
+
+        System.out.println("Hello");
     }
 }
