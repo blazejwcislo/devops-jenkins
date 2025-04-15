@@ -3,6 +3,11 @@ pipeline {
     tools {
         maven 'Maven 3.8.1'
     }
+    environment {
+        GITHUB_ACCOUNT = 'blazejwcislo'
+        GITHUB_REPO = 'devops-jenkins' 
+        GITHUB_CREDENTIALS = 'github-token'
+    }
     stages {
         stage('Build') {
             steps {
@@ -31,7 +36,7 @@ pipeline {
                     $class: 'GitSCM',
                     branches: [[name: '*/master']],
                     userRemoteConfigs: [[
-                        url: "https://github.com/${GITHUB_ACCOUNT}/${env.GITHUB_REPO}.git",
+                        url: "https://github.com/${env.GITHUB_ACCOUNT}/${env.GITHUB_REPO}.git",
                         credentialsId: "${GITHUB_CREDENTIALS}"
                     ]]
                 ])
@@ -40,7 +45,7 @@ pipeline {
                     echo "Commit SHA: ${COMMIT_SHA}"
 
                     withEnv([
-                        "GIT_URL=https://github.com/${GITHUB_ACCOUNT}/${env.GITHUB_REPO}.git",
+                        "GIT_URL=https://github.com/${env.GITHUB_ACCOUNT}/${env.GITHUB_REPO}.git",
                         "GIT_COMMIT=${COMMIT_SHA}"
                     ]) {
                         githubNotify context: 'CI/Jenkins',
@@ -53,5 +58,6 @@ pipeline {
                     }
                 }
             }
+        }
     }
 }
