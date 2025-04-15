@@ -25,16 +25,4 @@ pipeline {
             }
         }
     }
-    post {
-        success {
-            script {
-                githubCommitStatus(name: 'Jenkins Build', status: 'SUCCESS', context: 'build')
-            }
-        }
-        failure {
-            script {
-                githubCommitStatus(name: 'Jenkins Build', status: 'FAILURE', context: 'build')
-            }
-        }
-    }
 }
