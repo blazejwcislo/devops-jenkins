@@ -1,7 +1,12 @@
 package com.example;
 
-public class App {
-    public static void main(String[] args) {
-        System.out.println("Bad style")
-    }
+public final class App {
+
+private App() {
+throw new UnsupportedOperationException("Utility class");
+}
+
+public static void main(final String[] args) {
+System.out.println("Hello, clean world!");
+}
 }
