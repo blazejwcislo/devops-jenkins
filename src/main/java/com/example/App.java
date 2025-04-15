@@ -7,9 +7,9 @@ public final class App {
     }
 
     /**
-     * Metoda główna.
+     * Main method.
      *
-     * @param args argumenty wiersza poleceń
+     * @param args some comment
      */
     public static void main(final String[] args) {
         System.out.println("Hello, clean world!");
